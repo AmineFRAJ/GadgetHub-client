@@ -74,7 +74,7 @@ const ProductsList = () => {
                     />
                   </div>
                   <div className="ml-4">
-                    <div className="text-sm font-medium text-white">
+                    <div className="text-sm font-medium text-white hidden sm:block">
                       {product.model}
                     </div>
                   </div>

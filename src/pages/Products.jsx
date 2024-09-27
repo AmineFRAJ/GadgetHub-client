@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Laptop, SmartphoneCharging, Tablet } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Smartphone from "../components/Smartphone";
+
+import { useDispatch, useSelector } from "react-redux";
+import LaptopComponent from "../components/LaptopComponent";
+import TabletComponent from "../components/TabletComponent";
+import { getProducts } from "../JS/Actions/ProductAction";
 
 const tabs = [
-  { id: "Smartphone", label: "Smartphone", icon: SmartphoneCharging },
+  { id: "smartphone", label: "Smartphone", icon: SmartphoneCharging },
   { id: "laptops", label: "Laptops", icon: Laptop },
   { id: "tablet", label: "Tablets", icon: Tablet },
 ];
 
 const Products = () => {
-  const [activeTab, setActiveTab] = useState("create");
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.ProductReducer.products);
+  const [activeTab, setActiveTab] = useState("smartphone");
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  // Filter products by category
+  const smartphones = products.filter(
+    (product) => product.category === "smartphone"
+  );
+  const laptops = products.filter((product) => product.category === "laptop");
+  const tablets = products.filter((product) => product.category === "tablet");
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -25,7 +44,11 @@ const Products = () => {
           Our Products
         </motion.h1>
 
-       
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <div className="flex justify-center mb-8">
             {tabs.map((tab) => (
               <button
@@ -42,10 +65,11 @@ const Products = () => {
               </button>
             ))}
           </div>
-         
-        {/* {activeTab === "create" && <CreateProductForm />}
-         {activeTab === "products" && <ProductsList />}
-         {activeTab === "analytics" && <AnalyticsTab />} */}
+        </motion.div>
+
+        {activeTab === "smartphone" && <Smartphone products={smartphones} />}
+        {activeTab === "laptops" && <LaptopComponent products={laptops} />}
+        {activeTab === "tablet" && <TabletComponent products={tablets} />}
       </div>
     </div>
   );
