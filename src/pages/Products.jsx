@@ -1,34 +1,31 @@
 import React, { useEffect } from "react";
-
 import { Laptop, SmartphoneCharging, Tablet } from "lucide-react";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import Smartphone from "../components/Smartphone";
 
+import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../JS/Actions/ProductAction";
+import { Route, Link, Routes, useLocation, Navigate } from "react-router-dom";
+import Smartphone from "../components/Smartphone";
 import LaptopComponent from "../components/LaptopComponent";
 import TabletComponent from "../components/TabletComponent";
-import { getProducts } from "../JS/Actions/ProductAction";
 
 const tabs = [
-  { id: "smartphone", label: "Smartphone", icon: SmartphoneCharging },
-  { id: "laptops", label: "Laptops", icon: Laptop },
-  { id: "tablet", label: "Tablets", icon: Tablet },
+  { id: "smartphone", label: "Smartphone", icon: SmartphoneCharging, path: "smartphone" },
+  { id: "laptops", label: "Laptops", icon: Laptop, path: "laptops" },
+  { id: "tablet", label: "Tablets", icon: Tablet, path: "tablet" },
 ];
 
 const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.ProductReducer.products);
-  const [activeTab, setActiveTab] = useState("smartphone");
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
 
   // Filter products by category
-  const smartphones = products.filter(
-    (product) => product.category === "smartphone"
-  );
+  const smartphones = products.filter((product) => product.category === "smartphone");
   const laptops = products.filter((product) => product.category === "laptop");
   const tablets = products.filter((product) => product.category === "tablet");
 
@@ -51,27 +48,31 @@ const Products = () => {
         >
           <div className="flex justify-center mb-8">
             {tabs.map((tab) => (
-              <button
+              <Link
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                to={`/products/${tab.path}`}
                 className={`flex items-center px-4 py-2 mx-2 rounded-md transition-colors duration-200 ${
-                  activeTab === tab.id
+                  location.pathname.includes(tab.path)
                     ? "bg-blue-800 text-white"
                     : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                 }`}
               >
                 <tab.icon className="mr-2 h-5 w-5" />
                 {tab.label}
-              </button>
+              </Link>
             ))}
           </div>
         </motion.div>
 
-        {activeTab === "smartphone" && <Smartphone products={smartphones} />}
-        {activeTab === "laptops" && <LaptopComponent products={laptops} />}
-        {activeTab === "tablet" && <TabletComponent products={tablets} />}
+        <Routes>
+        <Route index element={<Navigate to="smartphone" />} />
+          <Route path="smartphone" element={<Smartphone products={smartphones} />} />
+          <Route path="laptops" element={<LaptopComponent products={laptops} />} />
+          <Route path="tablet" element={<TabletComponent products={tablets} />} />
+        </Routes>
       </div>
     </div>
   );
 };
+
 export default Products;

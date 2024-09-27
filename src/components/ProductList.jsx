@@ -3,6 +3,7 @@ import { Trash, Ellipsis, Cog } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../JS/Actions/ProductAction";
+import { Link } from "react-router-dom";
 
 const ProductsList = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const ProductsList = () => {
       className="bg-gray-800 shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.8,delay:0.4 }}
     >
       <table className=" min-w-full divide-y divide-gray-700">
         <thead className="bg-gray-700">
@@ -86,10 +87,10 @@ const ProductsList = () => {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <button className="text-white hover:text-blue-500">
+              <Link to={`/productdetails/${product._id}`} className="text-white hover:text-blue-500">
               
                   <Ellipsis />
-                </button>
+                </Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <button className="text-white hover:text-emerald-300">

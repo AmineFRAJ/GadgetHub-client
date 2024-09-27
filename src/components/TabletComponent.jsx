@@ -1,5 +1,7 @@
-import { ShoppingCart } from 'lucide-react';
+import { Tooltip } from 'antd';
+import { CircleEllipsis, ShoppingCart } from 'lucide-react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TabletComponent = ({ products }) => {
   console.log(products);  
@@ -31,12 +33,17 @@ const TabletComponent = ({ products }) => {
                 </span>
               </p>
             </div>
-            <button
-              className="flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300"
-            >
-              <ShoppingCart size={22} className="mr-2" />
-              Add to cart
-            </button>
+            <div className="flex justify-between ">
+                <button className="flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300">
+                  <ShoppingCart size={22} className="mr-2" />
+                  Add to cart
+                </button>
+                <Tooltip title="Details" placement="bottom">
+                  <Link to={`/productdetails/${product._id}`} className="hover:text-blue-500">
+                    <CircleEllipsis />
+                  </Link>
+                </Tooltip>
+              </div>
           </div>
         </div>
       ))}

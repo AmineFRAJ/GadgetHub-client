@@ -13,6 +13,10 @@ import Dashbord from "./pages/Dashbord";
 import Register from "./pages/Register";
 import FooterPage from "./components/FooterPage";
 import Products from "./pages/Products";
+import ProductDetails from "./pages/PorductDetails";
+import Smartphone from "./components/Smartphone";
+import LaptopComponent from "./components/LaptopComponent";
+import TabletComponent from "./components/TabletComponent";
 
 const App = () => {
   return (
@@ -27,8 +31,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/About" element={<About />} />
-          <Route path="/products" element={<Products />} />
-
+          <Route path="/products" element={<Products />}>
+            <Route path="smartphone" element={<Smartphone />} />
+            <Route path="laptops" element={<LaptopComponent />} />
+            <Route path="tablet" element={<TabletComponent />} />
+          </Route>
+          <Route path="/productdetails/:id" element={<ProductDetails />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

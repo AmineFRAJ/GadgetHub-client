@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
+import CategoryItem from "../components/CategoryItem";
 
 const Home = () => {
   return (
@@ -20,7 +21,7 @@ const Home = () => {
             at the best prices available!
           </p>{" "}
           <Link
-            to="/smartphone"
+            to="/products"
             className=" rounded-md bg-emerald-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 "
           >
             Discover
@@ -28,9 +29,28 @@ const Home = () => {
         </div>
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <h1 className="text-center text-5xl sm:text-6xl font-bold text-emerald-400 mb-4">
+            Explore Our Products
+          </h1>
+          <p className="text-center text-xl text-gray-300 mb-12">
+            Discover the latest trends in phones, laptops, and tablets.
+          </p>
+          <div  >
+					 
+						<CategoryItem  />
+					 
+				</div>
+        </div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
       >
         <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <Link
@@ -55,20 +75,7 @@ const Home = () => {
         </div>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <h1 className="text-center text-5xl sm:text-6xl font-bold text-emerald-400 mb-4">
-            Explore Our Products
-          </h1>
-          <p className="text-center text-xl text-gray-300 mb-12">
-            Discover the latest trends in phones, laptops, and tablets.
-          </p>
-        </div>
-      </motion.div>
+     
     </div>
   );
 };
