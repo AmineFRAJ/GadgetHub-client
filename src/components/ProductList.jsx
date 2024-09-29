@@ -3,7 +3,7 @@ import { Ellipsis } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../JS/Actions/ProductAction";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import DeleteProduct from "./DeleteProduct";
 import EditProduct from "./EditProduct";
@@ -19,8 +19,6 @@ const ProductsList = () => {
 
     return () => {};
   }, [dispatch]);
-
- 
 
   return (
     <motion.div
@@ -105,10 +103,14 @@ const ProductsList = () => {
                 </Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <EditProduct/>
+                <EditProduct  id={product._id}/>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                <DeleteProduct id={product._id} model={product.model}  brand={product.brand}/>
+                <DeleteProduct
+                  id={product._id}
+                  model={product.model}
+                  brand={product.brand}
+                />
               </td>
             </tr>
           ))}

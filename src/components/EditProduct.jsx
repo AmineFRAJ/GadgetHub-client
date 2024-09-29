@@ -6,23 +6,25 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { useParams } from "react-router-dom";
+ 
 import { useDispatch, useSelector } from "react-redux";
 import { editProduct, getProductsById } from "../JS/Actions/ProductAction";
 
-const EditProduct = () => {
-  const { id } = useParams();
+const EditProduct = ({id}) => {
+  
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.ProductReducer.product);
   const [newProduct, setNewProduct] = useState(product);
  
+
+ 
   const handleChange = (e) => {
     setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
   };
   const handleClick=()=>{
-    console.log(product)
-    dispatch(getProductsById(product.id));
+    console.log(id)
+    dispatch(getProductsById(id));
     setOpen(true);
     
   };
@@ -239,8 +241,8 @@ const EditProduct = () => {
                 {/* Dialog footer buttons */}
                 <div className=" bg-gray-500 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
-                    type="button"
-                    //   onClick={handleEdit}
+                    type="submit"
+                    
                     className="inline-flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 sm:ml-3 sm:w-auto"
                   >
                     Edit

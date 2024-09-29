@@ -22,6 +22,7 @@ const initialState = {
   error: null,
   products: [],
   product: {},
+
   deletedProduct: {},
 };
 
@@ -72,25 +73,29 @@ const ProductReducer = (state = initialState, { type, payload }) => {
     case DELETE_PRODUCTBYID_FAIL:
       return { ...state, success: null, load: false, error: payload };
 
-      case ADD_PRODUCT_LOAD:
-        return {...state, load: true}
+    case ADD_PRODUCT_LOAD:
+      return { ...state, load: true };
 
-        case ADD_PRODUCT_SUCCESS:
-          return { ...state, load: false, success: true, error: null, product: payload };
-        
+    case ADD_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        load: false,
+        success: true,
+        error: null,
+        product: payload,
+      };
 
     case ADD_PRODUCT_FAIL:
-        return {...state, success: null, load: false, error: payload}
+      return { ...state, success: null, load: false, error: payload };
 
-        case EDIT_PRODUCT_LOAD:
-          return {...state, load: true}
+    case EDIT_PRODUCT_LOAD:
+      return { ...state, load: true };
 
-      case EDIT_PRODUCT_SUCCESS:
-          return {...state, load: false, success: true}
+    case EDIT_PRODUCT_SUCCESS:
+      return { ...state, load: false, success: true };
 
-      case EDIT_PRODUCT_FAIL:
-          return {...state, success: null, load: false, error: payload}
-          
+    case EDIT_PRODUCT_FAIL:
+      return { ...state, success: null, load: false, error: payload };
 
     default:
       return state;
