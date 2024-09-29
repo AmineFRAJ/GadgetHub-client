@@ -48,7 +48,7 @@ export const deleteProductById =
       const result = await axios.delete(`/api/products/deleteProduct/${id}`);
       dispatch({ type: DELETE_PRODUCTBYID_SUCCESS, payload: result.data });
       dispatch(getProducts());
-      navigate("/secret-dashbord");
+      navigate("/secret-dashboard");
     } catch (error) {
       console.log(error.message);
       dispatch({ type: DELETE_PRODUCTBYID_FAIL, payload: error });
@@ -65,6 +65,7 @@ export const addProduct =
       dispatch({ type: ADD_PRODUCT_SUCCESS, payload: result.data });
       navigate(0);
       dispatch(getProducts());
+     
     } catch (error) {
       dispatch({ type: ADD_PRODUCT_FAIL, payload: error });
     }
@@ -83,7 +84,7 @@ export const editProduct =
       dispatch({ type: EDIT_PRODUCT_SUCCESS, payload: result.data });
       dispatch(getProductsById(id));
       dispatch(getProducts());
-      navigate("/secret-dashbord");
+      navigate("/secret-dashboard");
     } catch (error) {
       console.log(error.message);
       dispatch({ type: EDIT_PRODUCT_FAIL, payload: error });

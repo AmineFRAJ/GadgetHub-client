@@ -9,7 +9,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 
 import ErrorPage from "./pages/ErrorPage";
-import Dashbord from "./pages/Dashbord";
+ 
 import Register from "./pages/Register";
 import FooterPage from "./components/FooterPage";
 import Products from "./pages/Products";
@@ -17,6 +17,8 @@ import ProductDetails from "./pages/PorductDetails";
 import Smartphone from "./components/Smartphone";
 import LaptopComponent from "./components/LaptopComponent";
 import TabletComponent from "./components/TabletComponent";
+import Dashboard from "./pages/Dashbord";
+ 
 
 const App = () => {
   return (
@@ -40,7 +42,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/secret-dashbord" element={<Dashbord />} />
+          <Route path="/secret-dashboard" element={<Dashboard />} />
           <Route path="/*" element={<ErrorPage />} />
         </Routes>
         <FooterPage />

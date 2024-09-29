@@ -13,7 +13,7 @@ const tabs = [
   { id: "users", label: "Users List", icon: List },
 ];
 
-const Dashbord = () => {
+const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("products");
 
   return (
@@ -58,4 +58,4 @@ const Dashbord = () => {
     </div>
   );
 };
-export default Dashbord;
+export default Dashboard;
