@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { deleteProductById } from "../JS/Actions/ProductAction";
  
 
-const DeleteProduct = ({ id, model }) => {
+const DeleteProduct = ({ id, model ,brand}) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const DeleteProduct = ({ id, model }) => {
                       as="h3"
                       className="text-base font-semibold leading-6 text-gray-900"
                     >
-                      Delete {model}
+                      Delete {brand} {model}
                     </DialogTitle>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">

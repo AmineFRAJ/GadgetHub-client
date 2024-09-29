@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { Ellipsis, Cog } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../JS/Actions/ProductAction";
 import { Link} from "react-router-dom";
 import Spinner from "../components/Spinner";
 import DeleteProduct from "./DeleteProduct";
+import EditProduct from "./EditProduct";
 
 const ProductsList = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const ProductsList = () => {
     return () => {};
   }, [dispatch]);
 
-  console.log(products);
+ 
 
   return (
     <motion.div
@@ -80,7 +81,7 @@ const ProductsList = () => {
                     <img
                       className="h-10 w-10 rounded-full object-cover"
                       src={product.image}
-                      alt={product.brand}
+                      alt={product.model}
                     />
                   </div>
                   <div className="ml-4">
@@ -104,12 +105,10 @@ const ProductsList = () => {
                 </Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <button className="text-white hover:text-emerald-300">
-                  <Cog className="h-5 w-5" />
-                </button>
+                <EditProduct/>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                <DeleteProduct id={product._id} model={product.model} />
+                <DeleteProduct id={product._id} model={product.model}  brand={product.brand}/>
               </td>
             </tr>
           ))}
