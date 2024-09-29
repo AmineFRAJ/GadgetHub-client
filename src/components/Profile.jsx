@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { User, Mail, Phone, Briefcase, Info } from "lucide-react";
+import { User, Mail, Phone, Briefcase } from "lucide-react";
 
 const Profile = () => {
   return (
@@ -104,22 +104,7 @@ const Profile = () => {
           </div>
 
           {/* Description */}
-          <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-300">
-              Description
-            </label>
-            <div className="mt-1 relative rounded-md shadow-sm">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Info className="h-5 w-5 text-gray-400" aria-hidden="true" />
-              </div>
-              <textarea
-                rows="4"
-                
-                className="block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
-                readOnly
-              />
-            </div>
-          </div>
+          
         </div>
       </motion.div>
     </div>
