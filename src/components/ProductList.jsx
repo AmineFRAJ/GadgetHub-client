@@ -1,13 +1,17 @@
 import { motion } from "framer-motion";
-import { Trash, Ellipsis, Cog } from "lucide-react";
+import { Ellipsis, Cog } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../JS/Actions/ProductAction";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import Spinner from "../components/Spinner";
+import DeleteProduct from "./DeleteProduct";
 
 const ProductsList = () => {
   const dispatch = useDispatch();
+
   const products = useSelector((state) => state.ProductReducer.products);
+  const load = useSelector((state) => state.ProductReducer.load);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -22,8 +26,13 @@ const ProductsList = () => {
       className="bg-gray-800 shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8,delay:0.4 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
     >
+      {load && (
+        <div className="flex justify-center items-center h-screen">
+          <Spinner />
+        </div>
+      )}
       <table className=" min-w-full divide-y divide-gray-700">
         <thead className="bg-gray-700">
           <tr>
@@ -87,8 +96,10 @@ const ProductsList = () => {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-              <Link to={`/productdetails/${product._id}`} className="text-white hover:text-blue-500">
-              
+                <Link
+                  to={`/productdetails/${product._id}`}
+                  className="text-white hover:text-blue-500"
+                >
                   <Ellipsis />
                 </Link>
               </td>
@@ -98,9 +109,7 @@ const ProductsList = () => {
                 </button>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                <button className="text-red-400 hover:text-red-300">
-                  <Trash className="h-5 w-5" />
-                </button>
+                <DeleteProduct id={product._id} model={product.model} />
               </td>
             </tr>
           ))}
