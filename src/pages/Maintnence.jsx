@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const Cart = () => {
+const Maintenance = () => {
   return (
     <div className="relative min-h-screen text-white overflow-hidden mt-48">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -39,4 +39,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Maintenance;

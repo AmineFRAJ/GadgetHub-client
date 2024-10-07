@@ -22,7 +22,7 @@ export const register =
       dispatch({ type: REGISTER_USER_SUCCESS, payload: result.data });
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
       dispatch({ type: REGISTER_USER_FAIL, payload: error.response.data.errors });
     }
   };

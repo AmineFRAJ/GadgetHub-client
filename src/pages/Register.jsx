@@ -141,6 +141,9 @@ const Register = () => {
                   placeholder="••••••••"
                 />
               </div>
+              <p className="mt-2 text-xs text-gray-500 text-center">
+    Password must be at least 6 characters long.
+  </p>
             </div>
 
             {/* Submit button */}

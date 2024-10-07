@@ -77,6 +77,7 @@ const Panier = () => {
                     <Trash />
                   </button>
                 </li>
+               
               ))}
             </ul>
 
