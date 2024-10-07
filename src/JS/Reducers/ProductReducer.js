@@ -22,7 +22,6 @@ const initialState = {
   error: null,
   products: [],
   product: {},
-
   deletedProduct: {},
 };
 

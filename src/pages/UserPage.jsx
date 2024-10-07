@@ -1,8 +1,9 @@
 import React from 'react'
+import Profile from '../components/Profile'
 
 const UserPage = () => {
   return (
-    <div>UserPage</div>
+    <div><Profile/></div>
   )
 }
 

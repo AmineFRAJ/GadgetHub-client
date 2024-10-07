@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { User, Mail, Phone, Briefcase } from "lucide-react";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  const user = useSelector((state) => state.AuthReducer.user);
   return (
     <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 max-w-full overflow-x-hidden">
       <motion.div
@@ -38,9 +40,10 @@ const Profile = () => {
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <User className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <User className="h-5 w-5 text-gray-400" aria-hidden="true"  />  {user.name}
               </div>
               <input
+            
                 type="text"
                
                 className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
@@ -56,7 +59,7 @@ const Profile = () => {
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <Mail className="h-5 w-5 text-gray-400" aria-hidden="true" />  {user.email}
               </div>
               <input
                 type="email"
@@ -74,7 +77,7 @@ const Profile = () => {
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Phone className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <Phone className="h-5 w-5 text-gray-400" aria-hidden="true" />  {user.phone}
               </div>
               <input
                 type="tel"
@@ -92,11 +95,11 @@ const Profile = () => {
             </label>
             <div className="mt-1 relative rounded-md shadow-sm">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Briefcase className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <Briefcase className="h-5 w-5 text-gray-400" aria-hidden="true" />   
               </div>
               <input
                 type="text"
-               
+                value={user.isAdmin ? "Admin" : "Client"}
                 className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                 readOnly
               />

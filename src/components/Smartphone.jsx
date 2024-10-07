@@ -3,12 +3,17 @@ import { CircleEllipsis, ShoppingCart } from "lucide-react";
 import React from "react";
 import { Tooltip } from "antd";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../components/Spinner";
+import { addToCart } from  "../JS/Actions/AddToCartAction"
 
 const Smartphone = ({ products }) => {
+  const dispatch = useDispatch();
   const load = useSelector((state) => state.ProductReducer.load);
-  console.log(products);
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product)); 
+  };
 
   return (
     <motion.div
@@ -16,7 +21,6 @@ const Smartphone = ({ products }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.4 }}
     >
-      {" "}
       {load && (
         <div className="flex justify-center items-center h-screen">
           <Spinner />
@@ -25,7 +29,7 @@ const Smartphone = ({ products }) => {
       <div className="flex flex-wrap">
         {products.map((product) => (
           <div
-            key={product._id} // Ensure this is unique
+            key={product._id} 
             className="mb-4 flex w-full md:w-1/2 lg:w-1/3 relative flex-col overflow-hidden rounded-lg border border-gray-700 shadow-lg"
           >
             <div className="relative mx-3 mt-3 flex overflow-hidden rounded-xl">
@@ -49,7 +53,10 @@ const Smartphone = ({ products }) => {
                 </p>
               </div>
               <div className="flex justify-between">
-                <button className="flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300">
+                <button
+                  onClick={() => handleAddToCart(product)} 
+                  className="flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300"
+                >
                   <ShoppingCart size={22} className="mr-2" />
                   Add to cart
                 </button>

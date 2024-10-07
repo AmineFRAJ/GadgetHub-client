@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import React from "react";
 import { Link } from "react-router-dom";
 import CategoryItem from "../components/CategoryItem";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const user = useSelector((state) => state.AuthReducer.user);
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
       <motion.div
@@ -13,7 +15,7 @@ const Home = () => {
       >
         <div className=" flex flex-col items-center relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <h1 className="text-center text-5xl sm:text-6xl font-bold text-emerald-400 mb-4">
-            Welcome to Our Website
+            Welcome  {user && user.name} to Our Website
           </h1>
           <img className="w-48 h-48" src="/ghub.png" alt="" />
           <p className="text-center text-xl text-gray-300 mb-12">

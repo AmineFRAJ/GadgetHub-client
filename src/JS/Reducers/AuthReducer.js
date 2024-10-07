@@ -1,5 +1,15 @@
-const { REGISTER_USER_LOAD, REGISTER_USER_SUCCESS, REGISTER_USER_FAIL, LOGIN_USER_LOAD, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGOUT_USER, CURRENT_USER } = require("../ActionTypes/AuthActionTypes");
-
+const {
+  REGISTER_USER_LOAD,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAIL,
+  LOGIN_USER_LOAD,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAIL,
+  LOGOUT_USER,
+  CURRENT_USER,
+  CLEAR_ERRORS_AUTH,
+  CLEAR_SUCCESS_AUTH,
+} = require("../ActionTypes/AuthActionTypes");
 
 const initialState = {
   user: null,
@@ -24,8 +34,9 @@ const AuthReducer = (state = initialState, { type, payload }) => {
         isAuth: true,
       };
 
-    case REGISTER_USER_FAIL:
-      return { ...state, load: false, errors: payload.error, success: null };
+      case REGISTER_USER_FAIL:
+        return { ...state, loadUser: false, errors: payload, success: null };
+  
 
     case LOGIN_USER_LOAD:
       return { ...state, loadUser: true };
@@ -41,20 +52,29 @@ const AuthReducer = (state = initialState, { type, payload }) => {
       };
 
     case LOGIN_USER_FAIL:
-      return { ...state, loadUser: false, errors: payload.error, success: null };
-
+      return {
+        ...state,
+        loadUser: false,
+        errors: payload,
+        success: null,
+      };
 
     case LOGOUT_USER:
       localStorage.removeItem("token");
-      return {...state, user: null, isAuth: false}
+      return { ...state, user: null, isAuth: false };
 
-      case CURRENT_USER:
-        return { ...state, user: payload, loadUser: false, isAuth: true };
-      
+    case CURRENT_USER:
+      return { ...state, user: payload, loadUser: false, isAuth: true };
+
+    case CLEAR_ERRORS_AUTH:
+      return { ...state, errors: null };
+
+    case CLEAR_SUCCESS_AUTH:
+      return { ...state, success: null };
+
     default:
       return state;
   }
 };
-
 
 export default AuthReducer;

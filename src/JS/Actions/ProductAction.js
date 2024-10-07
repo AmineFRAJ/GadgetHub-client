@@ -16,7 +16,7 @@ import {
   GET_PRODUCTBYID_SUCCESS,
 } from "../ActionTypes/ProductActionTypes";
 import axios from "axios";
-//get production action
+//get products action
 export const getProducts = () => async (dispatch) => {
   dispatch({ type: GET_PRODUCT_LOAD });
   try {

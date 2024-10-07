@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 import { ArrowRight, Lock, Mail, Phone, User, UserPlus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../JS/Actions/AuthActions";
 const Register = () => {
+  const [newUser, setNewUser] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setNewUser({ ...newUser, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = () => {
+    dispatch(register({ newUser, navigate }));
+  };
+  console.log(newUser);
   return (
     <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 md:mb-32">
       <motion.div
@@ -24,7 +38,13 @@ const Register = () => {
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <div className="mx-4 rounded-lg bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6">
+          <form
+            className="space-y-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleRegister();
+            }}
+          >
             {/* Full name */}
             <div>
               <label
@@ -38,11 +58,12 @@ const Register = () => {
                   <User className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </div>
                 <input
+                  onChange={(e) => handleChange(e)}
+                  name="name"
                   id="name"
                   type="text"
                   required
-                  className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm
-                                 placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+                  className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                   placeholder="Full name"
                 />
               </div>
@@ -60,11 +81,12 @@ const Register = () => {
                   <Phone className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </div>
                 <input
+                  onChange={(e) => handleChange(e)}
+                  name='phone'
                   id="phone"
                   type="tel"
                   required
-                  className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 
-                                rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
+                  className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
                   placeholder="Phone number"
                 />
               </div>
@@ -82,6 +104,8 @@ const Register = () => {
                   <Mail className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </div>
                 <input
+                  onChange={(e) => handleChange(e)}
+                   name="email"
                   id="email"
                   type="email"
                   required
@@ -107,6 +131,8 @@ const Register = () => {
                   <Lock className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </div>
                 <input
+                  onChange={(e) => handleChange(e)}
+                  name="password"
                   id="password"
                   type="password"
                   required
@@ -131,12 +157,15 @@ const Register = () => {
               </>
             </button>
           </form>
-          <p className='mt-8 text-center text-sm text-gray-400'>
-						Already have an account?{" "}
-						<Link to='/login' className='font-medium text-emerald-400 hover:text-emerald-300'>
-							Login here <ArrowRight className='inline h-4 w-4' />
-						</Link>
-					</p>
+          <p className="mt-8 text-center text-sm text-gray-400">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="font-medium text-emerald-400 hover:text-emerald-300"
+            >
+              Login here <ArrowRight className="inline h-4 w-4" />
+            </Link>
+          </p>
         </div>
       </motion.div>
     </div>

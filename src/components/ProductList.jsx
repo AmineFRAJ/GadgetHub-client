@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+ import { motion } from "framer-motion";
 import { Ellipsis } from "lucide-react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,38 +32,38 @@ const ProductsList = () => {
           <Spinner />
         </div>
       )}
-      <table className=" min-w-full divide-y divide-gray-700">
+      <table className="min-w-full divide-y divide-gray-700 table-fixed">
         <thead className="bg-gray-700">
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
             >
               Product
             </th>
 
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
             >
               Category
             </th>
 
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
             >
               Details
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
             >
               Edit
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+              className="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider sm:w-1/6 w-1/4"
             >
               Delete
             </th>
@@ -73,7 +73,7 @@ const ProductsList = () => {
         <tbody className="bg-gray-800 divide-y divide-gray-700">
           {products?.map((product) => (
             <tr key={product._id} className="hover:bg-gray-700">
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-2 py-4 whitespace-nowrap">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 h-10 w-10">
                     <img
@@ -89,12 +89,12 @@ const ProductsList = () => {
                   </div>
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-2 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-300">
-                  {product.category.toUpperCase(0)}
+                  {product.category.toUpperCase()}
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
+              <td className="px-2 py-4 whitespace-nowrap">
                 <Link
                   to={`/productdetails/${product._id}`}
                   className="text-white hover:text-blue-500"
@@ -102,8 +102,8 @@ const ProductsList = () => {
                   <Ellipsis />
                 </Link>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap">
-                <EditProduct  id={product._id}/>
+              <td className="px-2 py-4 whitespace-nowrap">
+                <EditProduct id={product._id} />
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <DeleteProduct
