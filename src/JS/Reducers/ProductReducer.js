@@ -2,6 +2,8 @@ import {
   ADD_PRODUCT_FAIL,
   ADD_PRODUCT_LOAD,
   ADD_PRODUCT_SUCCESS,
+  CLEAR_ERRORS_PRODUCT,
+  CLEAR_SUCCESS_PRODUCT,
   DELETE_PRODUCTBYID_FAIL,
   DELETE_PRODUCTBYID_LOAD,
   DELETE_PRODUCTBYID_SUCCESS,
@@ -34,7 +36,7 @@ const ProductReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         load: false,
-        success: true,
+        success: payload.success,
         error: null,
         products: payload,
       };
@@ -49,7 +51,7 @@ const ProductReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         load: false,
-        success: true,
+        
         error: null,
         product: payload,
       };
@@ -64,8 +66,6 @@ const ProductReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         load: false,
-        success: true,
-
         deletedProduct: payload,
       };
 
@@ -79,7 +79,7 @@ const ProductReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         load: false,
-        success: true,
+        success: payload.success,
         error: null,
         product: payload,
       };
@@ -95,6 +95,12 @@ const ProductReducer = (state = initialState, { type, payload }) => {
 
     case EDIT_PRODUCT_FAIL:
       return { ...state, success: null, load: false, error: payload };
+
+      case CLEAR_ERRORS_PRODUCT:
+        return { ...state, errors: null };
+  
+      case CLEAR_SUCCESS_PRODUCT:
+        return { ...state, success: null };
 
     default:
       return state;

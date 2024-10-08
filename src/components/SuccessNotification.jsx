@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { clearSuccessAuth } from "../JS/Actions/AuthActions";
+import { clearSuccessProduct } from "../JS/Actions/ProductAction";
  
 
 const SuccessNotification = ({ success }) => {
@@ -12,7 +13,7 @@ const SuccessNotification = ({ success }) => {
     setTimeout(() => {
       setshow(false);
       dispatch(clearSuccessAuth());
-
+dispatch(clearSuccessProduct());
     }, 3000);
   }, [show, dispatch]);
 

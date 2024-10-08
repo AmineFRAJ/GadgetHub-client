@@ -2,6 +2,8 @@ import {
   ADD_PRODUCT_FAIL,
   ADD_PRODUCT_LOAD,
   ADD_PRODUCT_SUCCESS,
+  CLEAR_ERRORS_PRODUCT,
+  CLEAR_SUCCESS_PRODUCT,
   DELETE_PRODUCTBYID_FAIL,
   DELETE_PRODUCTBYID_LOAD,
   DELETE_PRODUCTBYID_SUCCESS,
@@ -63,11 +65,10 @@ export const addProduct =
     try {
       const result = await axios.post("/api/products/addProduct", newProduct);
       dispatch({ type: ADD_PRODUCT_SUCCESS, payload: result.data });
-      navigate(0);
       dispatch(getProducts());
-     
+     navigate(0)
     } catch (error) {
-      dispatch({ type: ADD_PRODUCT_FAIL, payload: error });
+      dispatch({ type: ADD_PRODUCT_FAIL, payload: error.response.data.errors });
     }
   };
 
@@ -90,3 +91,16 @@ export const editProduct =
       dispatch({ type: EDIT_PRODUCT_FAIL, payload: error });
     }
   };
+// clear errors
+export const clearErrorsProduct = () => {
+  return {
+    type: CLEAR_ERRORS_PRODUCT,
+  };
+};
+
+// clear success
+export const clearSuccessProduct = () => {
+  return {
+    type: CLEAR_SUCCESS_PRODUCT ,
+  };
+};
