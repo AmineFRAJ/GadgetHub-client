@@ -19,7 +19,7 @@ const ProductDetails = () => {
   }, [dispatch, id]);
 
   return (
-    <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 md:mb-32">
+    <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8 md:mb-32 ">
       {
         load && (
           <div className="flex justify-center items-center h-screen">
@@ -44,10 +44,10 @@ const ProductDetails = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="mx-4 rounded-lg bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="mx-4 rounded-lg bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
           <div className="flex flex-col md:flex-row md:items-center">
             {/* Image Section */}
-            <div className="relative md:w-1/2 mb-6 md:mb-0">
+            <div className="relative md:w-1/2 mb-6 md:mb-0 ">
               <img
                 className="object-cover w-full h-80 md:mb-4 rounded-lg"
                 src={product.image}

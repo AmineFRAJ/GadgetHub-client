@@ -30,56 +30,62 @@ const TabletComponent = ({ products }) => {
           <Spinner />
         </div>
       )}
-      <div className="flex flex-wrap">
+       <div className="flex flex-wrap justify-center gap-2">  
         {products.map((product) => (
           <div
-            key={product._id} // Ensure this is unique
-            className="mb-4 flex w-full md:w-1/2 lg:w-1/3 relative flex-col overflow-hidden rounded-lg border border-gray-700 shadow-lg"
-          >
-            <div className="relative mx-3 mt-3 flex overflow-hidden rounded-xl">
-              <img
-                className="object-cover w-full h-80"
-                src={product.image}
-                alt={product.model}
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-20" />
+          key={product._id}
+          className="mb-4 w-full sm:w-1/2 lg:w-1/4 relative flex flex-col overflow-hidden rounded-lg border border-gray-700 shadow-lg"
+        > 
+       
+          
+          {/* Image section */}
+          <div className="relative mx-3 mt-3 flex overflow-hidden rounded-xl">
+            <img
+              className="object-cover w-full sm:h-80" 
+              src={product.image}
+              alt={product.model}
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-20" />
+          </div>
+
+          <div className="mt-4 px-5 pb-5">
+            <h5 className="text-xl font-semibold tracking-tight text-white">
+              {product.model}
+            </h5>
+
+            <div className="mt-2 mb-5 flex items-center justify-between">
+              <p>
+                <span className="text-3xl font-bold text-emerald-400">
+                  ${product.price}
+                </span>
+              </p>
             </div>
 
-            <div className="mt-4 px-5 pb-5">
-              <h5 className="text-xl font-semibold tracking-tight text-white">
-                {product.model}
-              </h5>
-              <div className="mt-2 mb-5 flex items-center justify-between">
-                <p>
-                  <span className="text-3xl font-bold text-emerald-400">
-                    ${product.price}
-                  </span>
-                </p>
-              </div>
-              <div className="flex justify-between">
-              <button
-                  onClick={() => handleAddToCart(product)}
-                  disabled={!isAuth || isAdmin}  
-                  className={`flex items-center justify-center rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-emerald-300 ${
-                    isAuth && !isAdmin
-                      ? "bg-emerald-600 hover:bg-emerald-700"
-                      : "bg-gray-400 cursor-not-allowed"
-                  }`}
-                >
-                  <ShoppingCart size={22} className="mr-2" />
-                  Add to cart
-                </button>
-                <Tooltip title="Details" placement="bottom">
-                  <Link
-                    to={`/productdetails/${product._id}`}
-                    className="hover:text-blue-500"
-                  >
-                    <CircleEllipsis />
-                  </Link>
-                </Tooltip>
-              </div>
+            {/* Buttons */}
+            <div className="flex justify-between">
+             <button
+                 onClick={() => handleAddToCart(product)}
+                 disabled={!isAuth || isAdmin}  
+                 className={`flex items-center justify-center rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-emerald-300 ${
+                   isAuth && !isAdmin
+                     ? "bg-emerald-600 hover:bg-emerald-700"
+                     : "bg-gray-400 cursor-not-allowed"
+                 }`}
+               >
+                 <ShoppingCart size={22} className="mr-2" />
+                 Add to cart
+               </button>
+               <Tooltip title="Details" placement="bottom">
+                 <Link
+                   to={`/productdetails/${product._id}`}
+                   className="hover:text-blue-500"
+                 >
+                   <CircleEllipsis />
+                 </Link>
+               </Tooltip>
             </div>
           </div>
+        </div>
         ))}
       </div>
     </motion.div>
