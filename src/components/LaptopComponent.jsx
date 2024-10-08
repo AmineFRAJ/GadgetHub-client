@@ -9,6 +9,9 @@ import { addToCart } from "../JS/Actions/AddToCartAction";
 
 const LaptopComponent = ({ products }) => {
   const load = useSelector((state) => state.ProductReducer.load);
+  const user = useSelector((state) => state.AuthReducer.user);
+  const isAuth = user !== null;  
+  const isAdmin = user?.isAdmin;
   console.log(products);
   const dispatch = useDispatch();
 
@@ -54,9 +57,14 @@ const LaptopComponent = ({ products }) => {
                 </p>
               </div>
               <div className="flex justify-between">
-                <button
+              <button
                   onClick={() => handleAddToCart(product)}
-                  className="flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300"
+                  disabled={!isAuth || isAdmin} // Disable if not logged in or if admin
+                  className={`flex items-center justify-center rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-emerald-300 ${
+                    isAuth && !isAdmin
+                      ? "bg-emerald-600 hover:bg-emerald-700"
+                      : "bg-gray-400 cursor-not-allowed"
+                  }`}
                 >
                   <ShoppingCart size={22} className="mr-2" />
                   Add to cart
