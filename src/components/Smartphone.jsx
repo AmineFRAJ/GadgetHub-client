@@ -10,7 +10,9 @@ import { addToCart } from  "../JS/Actions/AddToCartAction"
 const Smartphone = ({ products }) => {
   const dispatch = useDispatch();
   const load = useSelector((state) => state.ProductReducer.load);
-
+  const user = useSelector((state) => state.AuthReducer.user);
+  const isAuth = user !== null;  
+  const isAdmin = user?.isAdmin;
   const handleAddToCart = (product) => {
     dispatch(addToCart(product)); 
   };
@@ -53,9 +55,14 @@ const Smartphone = ({ products }) => {
                 </p>
               </div>
               <div className="flex justify-between">
-                <button
-                  onClick={() => handleAddToCart(product)} 
-                  className="flex items-center justify-center rounded-lg bg-emerald-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-300"
+              <button
+                  onClick={() => handleAddToCart(product)}
+                  disabled={!isAuth || isAdmin}  
+                  className={`flex items-center justify-center rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-emerald-300 ${
+                    isAuth && !isAdmin
+                      ? "bg-emerald-600 hover:bg-emerald-700"
+                      : "bg-gray-400 cursor-not-allowed"
+                  }`}
                 >
                   <ShoppingCart size={22} className="mr-2" />
                   Add to cart
