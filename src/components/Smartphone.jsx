@@ -28,7 +28,7 @@ const Smartphone = ({ products }) => {
           <Spinner />
         </div>
       )}
-      <div className="flex flex-wrap justify-center gap-2">  
+      <div className="mx-12 flex flex-wrap justify-center gap-2">  
         {products.map((product) => (
            <div
              key={product._id}
