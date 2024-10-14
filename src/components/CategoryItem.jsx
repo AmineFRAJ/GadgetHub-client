@@ -9,7 +9,7 @@ const CategoryItem = () => {
           <div className="w-full h-full cursor-pointer">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 opacity-50 z-10" />
             <img
-              src="https://20review.com/wp-content/uploads/2024/04/Meilleurs-Smartphones-Haut-De-Gamme-A-Moins-De-1000-euros.png"
+              src="https://www.ossia.com/hubfs/7-Modern-Smartphones.jpg"
               alt="smartphone"
               className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               loading="lazy"
