@@ -18,7 +18,7 @@ export const register =
   async (dispatch) => {
     dispatch({ type: REGISTER_USER_LOAD });
     try {
-      let result = await axios.post("/api/auth/register", newUser);
+      let result = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, newUser);
       dispatch({ type: REGISTER_USER_SUCCESS, payload: result.data });
       navigate("/");
     } catch (error) {
