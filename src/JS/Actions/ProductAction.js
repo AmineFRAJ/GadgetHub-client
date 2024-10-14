@@ -22,8 +22,10 @@ import axios from "axios";
 export const getProducts = () => async (dispatch) => {
   dispatch({ type: GET_PRODUCT_LOAD });
   try {
-    const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/products/getProducts`);
-    console.log(result.data)
+    const result = await axios.get(
+      `${process.env.REACT_APP_API_URL}/api/products/getProducts`
+    );
+    console.log(result.data);
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: result.data });
   } catch (error) {
     dispatch({ type: GET_PRODUCT_FAIL, payload: error });
@@ -34,7 +36,10 @@ export const getProducts = () => async (dispatch) => {
 export const getProductsById = (id) => async (dispatch) => {
   dispatch({ type: GET_PRODUCTBYID_LOAD });
   try {
-    const result = await axios.get(`/api/products/getProductById/${id}`);
+    const result = await axios.get(
+      `${process.env.REACT_APP_API_URL}/api/products/getProductById/${id}`
+    );
+
     dispatch({ type: GET_PRODUCTBYID_SUCCESS, payload: result.data });
   } catch (error) {
     console.log(error.message);
@@ -48,7 +53,10 @@ export const deleteProductById =
   async (dispatch) => {
     dispatch({ type: DELETE_PRODUCTBYID_LOAD });
     try {
-      const result = await axios.delete(`/api/products/deleteProduct/${id}`);
+      const result = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/products/deleteProduct/${id}`
+      );
+
       dispatch({ type: DELETE_PRODUCTBYID_SUCCESS, payload: result.data });
       dispatch(getProducts());
       navigate("/secret-dashboard");
@@ -64,10 +72,14 @@ export const addProduct =
   async (dispatch) => {
     dispatch({ type: ADD_PRODUCT_LOAD });
     try {
-      const result = await axios.post("/api/products/addProduct", newProduct);
+      const result = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/products/addProduct`,
+        newProduct
+      );
+
       dispatch({ type: ADD_PRODUCT_SUCCESS, payload: result.data });
       dispatch(getProducts());
-     navigate(0)
+      navigate(0);
     } catch (error) {
       dispatch({ type: ADD_PRODUCT_FAIL, payload: error.response.data.errors });
     }
@@ -80,9 +92,10 @@ export const editProduct =
     dispatch({ type: EDIT_PRODUCT_LOAD });
     try {
       const result = await axios.put(
-        `/api/products/editProduct/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/products/editProduct/${id}`,
         newProduct
       );
+
       dispatch({ type: EDIT_PRODUCT_SUCCESS, payload: result.data });
       dispatch(getProductsById(id));
       dispatch(getProducts());
@@ -102,6 +115,6 @@ export const clearErrorsProduct = () => {
 // clear success
 export const clearSuccessProduct = () => {
   return {
-    type: CLEAR_SUCCESS_PRODUCT ,
+    type: CLEAR_SUCCESS_PRODUCT,
   };
 };
