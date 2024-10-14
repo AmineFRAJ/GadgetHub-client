@@ -33,7 +33,7 @@ export const login =
   async (dispatch) => {
     dispatch({ type: LOGIN_USER_LOAD });
     try {
-      let result = await axios.post("/api/auth/login", user);
+      let result = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, user);
       dispatch({ type: LOGIN_USER_SUCCESS, payload: result.data });
       navigate("/");
     } catch (error) {
@@ -54,7 +54,7 @@ export const current = () => async (dispatch) => {
       headers: { Authorization: localStorage.getItem("token") },
     };
     console.log(config);
-    let result = await axios.get("/api/auth/current", config);
+    let result = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth/current`, config);
     dispatch({ type: CURRENT_USER, payload: result.data });
   } catch (error) {
     console.log(error);

@@ -23,6 +23,7 @@ export const getProducts = () => async (dispatch) => {
   dispatch({ type: GET_PRODUCT_LOAD });
   try {
     const result = await axios.get(`${process.env.REACT_APP_API_URL}/api/products/getProducts`);
+    console.log(result.data)
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: result.data });
   } catch (error) {
     dispatch({ type: GET_PRODUCT_FAIL, payload: error });
